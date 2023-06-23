@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Table, Input, Button, Space, Checkbox } from "antd";
 
 export const YourComponent = () => {
@@ -11,6 +11,9 @@ export const YourComponent = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [bulkEditEnabled, setBulkEditEnabled] = useState(false);
 
+  useEffect(() => {
+    selectedRowKeys.length && setBulkEditEnabled(true);
+  }, [selectedRowKeys]);
   const handleSave = () => {
     form.validateFields().then((values) => {
       console.log("Form values:", values);
